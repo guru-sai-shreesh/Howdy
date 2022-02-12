@@ -601,13 +601,13 @@ class DemoApp(MDApp):
         screen.add_widget(self.help_str)
         for key in contact_list:
             icons = IconLeftWidget(
-                icon=f"/Users/gurusaishreeshtirumalla/Desktop/Emailbot-ML/contact_icons/{contact_icons[key[0]]}")
+                icon=f"contact_icons/{contact_icons[key[0]]}")
             items = TwoLineAvatarListItem(text=key.capitalize(), secondary_text=contact_list[key])
             items.add_widget(icons)
             self.help_str.get_screen('select').ids.scroll.add_widget(items)
         for spam_num, address in spam_senders:
             icons = IconLeftWidget(
-                icon=f"/Users/gurusaishreeshtirumalla/Desktop/Emailbot-ML/contact_icons/{contact_icons[address[0].lower()]}")
+                icon=f"contact_icons/{contact_icons[address[0].lower()]}")
             items = OneLineAvatarIconListItem(text=(address.split("<"))[0])
             items.add_widget(icons)
             self.help_str.get_screen('spam').ids.scroll.add_widget(items)
