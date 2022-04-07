@@ -146,7 +146,7 @@ def import_subject():
     status, messages = imap.select("INBOX")
 
     # number of top emails to fetch
-    n = 25
+    n = 10
     # total number of emails
     messages = int(messages[0])
     for i in range(messages, messages - n, -1):
@@ -277,7 +277,7 @@ ScreenManager:
         font_size: '30sp'
         pos_hint: {"center_x": 0.65, "center_y": 0.63}
         color: 1, 1, 1, 1
-        
+
 <SpamSenders>:
     name: 'spam'
     BoxLayout:
@@ -454,7 +454,7 @@ ScreenManager:
         text: 'Menu'
         pos_hint: {'center_x':0.84,'center_y':0.05}
         on_press: root.manager.current = 'select0'
-        
+
 """
 
 
@@ -574,7 +574,7 @@ class EndScreen(Screen):
         self.ids.final.text = final_msg_names
         email_receivers.clear()
         addresses.clear()
-        sub.clear() 
+        sub.clear()
         body.clear()
 
 
@@ -589,7 +589,6 @@ sm.add_widget(SubjectScreen(name='subject'))
 sm.add_widget(BodyScreen(name='body'))
 sm.add_widget(EndScreen(name='end'))
 
-
 Window.size = (330, 600)
 
 
@@ -601,14 +600,15 @@ class DemoApp(MDApp):
         screen.add_widget(self.help_str)
         for key in contact_list:
             icons = IconLeftWidget(
-                icon=f"contact_icons/{contact_icons[key[0]]}")
+                icon=f"/Users/gurusaishreeshtirumalla/Desktop/Emailbot-ML/Alphabets/{contact_icons[key[0]]}")
             items = TwoLineAvatarListItem(text=key.capitalize(), secondary_text=contact_list[key])
             items.add_widget(icons)
             self.help_str.get_screen('select').ids.scroll.add_widget(items)
         for spam_num, address in spam_senders:
+            address = address.split("<")
             icons = IconLeftWidget(
-                icon=f"contact_icons/{contact_icons[address[0].lower()]}")
-            items = OneLineAvatarIconListItem(text=(address.split("<"))[0])
+                icon=f"/Users/gurusaishreeshtirumalla/Desktop/Emailbot-ML/Alphabets/{contact_icons[address[1][0].lower()]}")
+            items = OneLineAvatarIconListItem(text=(address)[0])
             items.add_widget(icons)
             self.help_str.get_screen('spam').ids.scroll.add_widget(items)
         return screen
